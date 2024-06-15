@@ -1,0 +1,14 @@
+<form class="login">
+    <mat-form-field class="full-width">
+      <mat-label>Username</mat-label>
+      <input matInput #username>
+    </mat-form-field>
+  
+    <mat-form-field class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type=password #password>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" (click)="login(username.value, password.value)">Login </button><br>
+    <button mat-stroked-button color="primary" (click)="moveToCreateAccountPage()">Create Account</button>
+    
+  </form>
