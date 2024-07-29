@@ -5,5 +5,6 @@ export interface Games {
     imageURL: string;
     dev: string;
     publisher: string;
+    release: Date;
     
 }

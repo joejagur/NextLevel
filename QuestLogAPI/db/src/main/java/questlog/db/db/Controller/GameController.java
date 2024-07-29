@@ -155,14 +155,19 @@ public class GameController {
                 if(game.has("first_release_date")){
                     release = game.getInt("first_release_date");
                 }
+                else{
+                    continue;
+                }
                 Game currentGame = new Game(game.getInt("id"), game.getString("name"), 
                     summary,dev, publisher, coverurl, release);
                 dao.createGame(currentGame);
 
                 games.add(currentGame);
+                System.out.println(currentGame.getReleaseDate() + ": " + currentGame.getTitle() + ": " + release);
                 
             }
             ResponseEntity<ArrayList<Game>> entity = new ResponseEntity<>(games, headers, HttpStatus.OK);
+           
         
             return entity;
 

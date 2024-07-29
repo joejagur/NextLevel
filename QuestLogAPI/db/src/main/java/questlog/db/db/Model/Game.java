@@ -21,9 +21,7 @@ public class Game {
         this.imageURL = imageURL;
         this.dev = dev;
         this.publisher = publisher;
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(release);
-        this.release = cal.getTime();
+        this.release = new java.util.Date((long)release*1000);;
     }
     public Game(int id, String name, String description, String dev, String publisher, String imageURL, Date release){
         this.id = id;
@@ -74,7 +72,7 @@ public class Game {
     public void setImageURL(String newURL){
         this.imageURL = newURL;
     }
-    public void setRelease(Date date){
+    public void setReleaseDate(Date date){
         this.release = date;
     }
 
