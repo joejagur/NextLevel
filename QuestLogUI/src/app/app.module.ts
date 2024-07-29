@@ -28,7 +28,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import {MatCardModule} from '@angular/material/card';
-import { DatePipe } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +57,7 @@ import { DatePipe } from '@angular/common';
     MatTooltipModule,
     MatMenuModule,
     MatCardModule,
-    DatePipe
+    
     
   ],
   providers: [HttpClientModule, LoginComponent],
