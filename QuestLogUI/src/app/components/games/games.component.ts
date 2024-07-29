@@ -32,7 +32,7 @@ private userService:UserService){}
 
 games: Games[];
 
-columnsToDisplay = ['title', 'dev', 'publisher', 'id'];
+columnsToDisplay = ['title', 'dev', 'publisher', 'releaseDate'];
 columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
 selectedGame: Games | null;
 loading: boolean = false;
