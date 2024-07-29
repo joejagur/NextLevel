@@ -1,0 +1,41 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "DbApplication",
+      "request": "launch",
+      "mainClass": "questlog.db.db.DbApplication",
+      "projectName": "db"
+    },
+    {
+      "type": "java",
+      "name": "PostgresSetup",
+      "request": "launch",
+      "mainClass": "questlog.db.db.Persistence.PostgresSetup",
+      "projectName": "db"
+    },
+    {
+      "type": "java",
+      "name": "TestController",
+      "request": "launch",
+      "mainClass": "questlog.db.db.Controller.TestController",
+      "projectName": "db"
+    },
+    {
+      "name": "ng serve",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: start",
+      "url": "http://localhost:4200/"
+    },
+    {
+      "name": "ng test",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: test",
+      "url": "http://localhost:9876/debug.html"
+    }
+  ]
+}
