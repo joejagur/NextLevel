@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { User } from 'src/app/model/User';
+
+
 @Component({
   selector: 'app-games',
   templateUrl: './games.component.html',
@@ -42,6 +44,7 @@ user: User | undefined;
 ngOnInit(): void {
   this.user = JSON.parse(localStorage.getItem("user") || '{}');
 }
+
 
 
 addToUser(game: Games) {
