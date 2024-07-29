@@ -1,6 +1,5 @@
 package questlog.db.db.Model;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Game {
