@@ -40,7 +40,7 @@ public class GameFileDAO implements GameDAO{
             ResultSet rs = statement.executeQuery();
             List<Game> returnList = new ArrayList<>();
             while(rs.next()){
-                Game current = new Game(rs.getInt("id"), rs.getString("title"), rs.getString("description"), rs.getString("dev"), rs.getString("publisher"), "");
+                Game current = new Game(rs.getInt("id"), rs.getString("title"), rs.getString("description"), rs.getString("dev"), rs.getString("publisher"), "", rs.getDate("releaseDate"));
                 returnList.add(current);
             }
             return returnList;
@@ -59,7 +59,7 @@ public class GameFileDAO implements GameDAO{
             statement.setInt(1, gameID);
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
-                return new Game(rs.getInt("id"), rs.getString("title"), rs.getString("description"), rs.getString("dev"), rs.getString("publisher"), "");
+                return new Game(rs.getInt("id"), rs.getString("title"), rs.getString("description"), rs.getString("dev"), rs.getString("publisher"), "", rs.getDate("releaseDate") );
             }
 
         } catch (SQLException e) {
@@ -75,16 +75,17 @@ public class GameFileDAO implements GameDAO{
             if(this.getGame(newGame.getId())!=null){
                 return null;
             }
-            PreparedStatement statement =  conn.prepareStatement("INSERT INTO game(id, title, description, dev, publisher, imageurl) VALUES (?, ?, ?, ?, ?, ?) returning *");
+            PreparedStatement statement =  conn.prepareStatement("INSERT INTO game(id, title, description, dev, publisher, imageurl, releaseDate) VALUES (?, ?, ?, ?, ?, ?, ?) returning *");
             statement.setInt(1, newGame.getId());
             statement.setString(2, newGame.getTitle());
             statement.setString(3, newGame.getDescription());
             statement.setString(4, newGame.getDev());
             statement.setString(5, newGame.getPublisher());
             statement.setString(6, newGame.getImageURL());
+            statement.setDate(7, new java.sql.Date(newGame.getReleaseDate().getTime()));
             ResultSet rs = statement.executeQuery();
             rs.next();
-            return new Game(rs.getInt("id"), rs.getString("title"), rs.getString("description"), rs.getString("dev"), rs.getString("publisher"), rs.getString("imageurl"));
+            return new Game(rs.getInt("id"), rs.getString("title"), rs.getString("description"), rs.getString("dev"), rs.getString("publisher"), rs.getString("imageurl"), rs.getDate("releaseDate"));
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block

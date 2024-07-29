@@ -42,7 +42,7 @@ public class UserFileDAO implements UserDAO{
                 statement.setInt(1, returnUser.getID());
                 ResultSet rs2 = statement.executeQuery();
                 while(rs2.next()){
-                    returnUser.addGame(new Game(rs2.getInt(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), ""));
+                    returnUser.addGame(new Game(rs2.getInt(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), "", rs.getDate("releaseDate")));
                 }
                 return returnUser;
             }
@@ -65,7 +65,7 @@ public class UserFileDAO implements UserDAO{
                 statement.setInt(1, returnUser.getID());
                 ResultSet rs2 = statement.executeQuery();
                 while(rs2.next()){
-                    returnUser.addGame(new Game(rs2.getInt(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), ""));
+                    returnUser.addGame(new Game(rs2.getInt(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), "", rs.getDate("releaseDate")));
                 }
                 
                 return returnUser;

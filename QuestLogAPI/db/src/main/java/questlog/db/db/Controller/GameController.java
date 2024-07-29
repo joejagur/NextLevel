@@ -1,10 +1,7 @@
 package questlog.db.db.Controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -28,7 +25,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import questlog.db.db.Model.Game;
-import questlog.db.db.Model.User;
+
 import questlog.db.db.Persistence.GameDAO;
 import questlog.db.db.Persistence.GameFileDAO;
 
@@ -98,48 +95,7 @@ public class GameController {
 
         return null;
     }
-    @GetMapping("/random")
-    public ResponseEntity<Game> getRandom() throws IOException{
-        
-        HttpHeaders headers = new HttpHeaders();
 
-        URL url;
-        url = new URL("https://api.mobygames.com/v1/games/random?limt=1&format=normal&api_key=moby_2R1KK9kLqt0itftm5zIsvjynTbB");
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-        
-        System.out.println(con.getResponseCode());
-        BufferedReader in = new BufferedReader(
-        new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer content = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
-        }
-        JSONObject jsonObj = new JSONObject(content.toString());
-        JSONArray gameList = jsonObj.getJSONArray("games");
-        ArrayList<Game> games = new ArrayList<>();
-        for(int i = 0; i<gameList.length(); i++){
-            JSONObject game = gameList.getJSONObject(i);
-            String description = "No description";
-            if(game.get("description") instanceof String){
-                description = game.getString("description").replaceAll("<[^>]*>", "").replaceAll("\n", "").replaceAll("&amp;", "&");
-            }
-            String cover = "";
-            if(game.get("sample_cover") instanceof JSONObject){
-                 cover = game.getJSONObject("sample_cover").getString("thumbnail_image");
-            }
-            Game currentGame = new Game(game.getInt("game_id"), game.getString("title"), 
-                description,cover);
-            games.add(currentGame);
-        }
-        
-
-        in.close();
-        ResponseEntity<Game> entity = new ResponseEntity<>(games.get(0), headers, HttpStatus.OK);
-        
-        return entity;
-    }
 
 
     @GetMapping("/title={title}")
@@ -156,7 +112,8 @@ public class GameController {
             .header("Authorization", acessKey)
             .header("Accept", "application/json")
             .body("fields name, summary, involved_companies.company.name, "+
-                "involved_companies.developer, involved_companies.publisher, cover.url; search \""+ title+"\"; limit 100;")
+                "involved_companies.developer, involved_companies.publisher, cover.url, first_release_date; search \""+ title+"\"; "+ 
+                "where version_parent = null; limit 100;")
             .asJson();
 
             JSONArray gameList = response.getBody().getArray();
@@ -190,14 +147,20 @@ public class GameController {
 
                 }
                 String coverurl = "";
+                int release = 0;
                 if(game.has("cover")){
                     coverurl = game.getJSONObject("cover").getString("url");
                 }
+                
+                if(game.has("first_release_date")){
+                    release = game.getInt("first_release_date");
+                }
                 Game currentGame = new Game(game.getInt("id"), game.getString("name"), 
-                    summary,dev, publisher, coverurl);
+                    summary,dev, publisher, coverurl, release);
                 dao.createGame(currentGame);
 
                 games.add(currentGame);
+                
             }
             ResponseEntity<ArrayList<Game>> entity = new ResponseEntity<>(games, headers, HttpStatus.OK);
         
@@ -209,6 +172,33 @@ public class GameController {
         }
 
         return null;
+    }
+
+    @GetMapping("/top")
+    public ResponseEntity<ArrayList<Game>> getTop(){
+        LOG.info("GET /game/top");
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.add("Client-ID", clientID);
+        headers.add("Authorization", acessKey);
+
+        try {
+            HttpResponse<JsonNode> response = Unirest.post("https://api.igdb.com/v4/games")
+            .header("Client-ID", clientID)
+            .header("Authorization", acessKey)
+            .header("Accept", "application/json")
+            .body("fields name, summary, involved_companies.company.name, "+
+                "involved_companies.developer, involved_companies.publisher, cover.url;  limit 100;")
+            .asJson();
+
+            JSONArray gameList = response.getBody().getArray();
+
+        return null;
+
+    }catch (Exception e ){
+        System.out.println("Error");
+        return null;
+    }
     }
 
 }
