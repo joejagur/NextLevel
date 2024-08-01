@@ -28,6 +28,11 @@ import {MatMenuModule} from '@angular/material/menu';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import {MatCardModule} from '@angular/material/card';
+import { AddGamePopUpComponent } from './components/add-game-pop-up/add-game-pop-up.component';
+
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -38,6 +43,7 @@ import {MatCardModule} from '@angular/material/card';
     CreateAccountComponent,
     NavbarComponent,
     DashboardComponent,
+    AddGamePopUpComponent,
     
   ],
   imports: [
@@ -57,7 +63,9 @@ import {MatCardModule} from '@angular/material/card';
     MatTooltipModule,
     MatMenuModule,
     MatCardModule,
-    
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     
   ],
   providers: [HttpClientModule, LoginComponent],

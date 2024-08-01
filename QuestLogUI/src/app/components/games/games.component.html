@@ -47,9 +47,10 @@
         <div class="example-game-description">
           {{game.description}}
         <br>
-          <button mat-flat-button color="primary" type="button" *ngIf="selectedGame" (click)="(addToUser(selectedGame))">
+          <button mat-flat-button color="primary" type="button" *ngIf="selectedGame" (click)="openDialog()">
             Add
         </button>
+        <!-- (click)="(addToUser(selectedGame)) -->
 
         </div>
       </div>

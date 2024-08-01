@@ -163,8 +163,6 @@ public class GameController {
                 dao.createGame(currentGame);
 
                 games.add(currentGame);
-                System.out.println(currentGame.getReleaseDate() + ": " + currentGame.getTitle() + ": " + release);
-                
             }
             ResponseEntity<ArrayList<Game>> entity = new ResponseEntity<>(games, headers, HttpStatus.OK);
            

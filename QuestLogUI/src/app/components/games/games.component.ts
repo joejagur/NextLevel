@@ -3,13 +3,22 @@ import { GameService } from 'src/app/services/game.service';
 import { UserService } from 'src/app/services/user.service';
 
 import { Observable, Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Games } from 'src/app/model/Games'
 import { Router } from '@angular/router';
 
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { User } from 'src/app/model/User';
+import {AddGamePopUpComponent } from '../add-game-pop-up/add-game-pop-up.component';
 
+import {
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-games',
@@ -41,11 +50,21 @@ loading: boolean = false;
 
 user: User | undefined;
 
+dialog = inject(MatDialog);
+
 ngOnInit(): void {
   this.user = JSON.parse(localStorage.getItem("user") || '{}');
 }
 
+openDialog(): void {
+  const dialogRef = this.dialog.open(AddGamePopUpComponent);
 
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    if (result !== undefined) {
+      
+    }});
+}
 
 addToUser(game: Games) {
   if(this.user != undefined){

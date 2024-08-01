@@ -1,0 +1,10 @@
+<mat-form-field>
+    <mat-label>Started Playing</mat-label>
+    <input matInput [matDatepicker]="start">
+    <mat-datepicker-toggle matIconSuffix [for]="start"></mat-datepicker-toggle>
+    <mat-datepicker #start></mat-datepicker>
+    <mat-label>Finished Playing</mat-label>
+    <input matInput [matDatepicker]="end">
+    <mat-datepicker-toggle matIconSuffix [for]="end"></mat-datepicker-toggle>
+    <mat-datepicker #end></mat-datepicker>
+  </mat-form-field>
