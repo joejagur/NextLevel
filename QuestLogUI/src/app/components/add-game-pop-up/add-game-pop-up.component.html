@@ -10,9 +10,19 @@
   <input matInput [matDatepicker]="end">
   <mat-datepicker-toggle matIconSuffix [for]="end"></mat-datepicker-toggle>
   <mat-datepicker #end></mat-datepicker> 
- </mat-form-field>
-<br>
+</mat-form-field>
+<mat-form-field>
+  <mat-label> Rating </mat-label>
+  <mat-select>
+    <ng-container *ngFor="let rating of ratings">
+      <mat-option [value]="rating">{{rating}}</mat-option>
+    </ng-container>
+  </mat-select>
+</mat-form-field>
 
+
+
+<br>
 <button mat-flat-button color="primary" type="button" (click)="closeWithoutSave()">
   Cancel
 </button>

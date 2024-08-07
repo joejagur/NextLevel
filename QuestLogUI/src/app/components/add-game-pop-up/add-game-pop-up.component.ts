@@ -11,6 +11,8 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+
 @Component({
   selector: 'add-add-game-pop-up',
   templateUrl: './add-game-pop-up.component.html',
@@ -19,6 +21,9 @@ import {
 export class AddGamePopUpComponent {
 
 dialogRef = inject(MatDialogRef<AddGamePopUpComponent>);
+
+ratings : string[] = ["10 - Masterpiece", "9 - Amazing", "8 - Great", "7 - Good", "6 - Fair", "5 - Okay", "4 - Mediocre", "3 - Bad", "2 - Terrible", "1 - Abysmal"]
+
 closeWithoutSave() {
   this.dialogRef.close();
 }

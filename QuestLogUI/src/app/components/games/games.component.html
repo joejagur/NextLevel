@@ -41,18 +41,18 @@
     <td mat-cell *matCellDef="let game" [attr.colspan]="columnsToDisplayWithExpand.length">
       <div class="example-game-detail"
            [@detailExpand]="game == selectedGame ? 'expanded' : 'collapsed'">
-           <div class="example-element-diagram">
+           <div class="game-image">
               <img id="thumbnailImage" *ngIf="selectedGame!==null" src="{{selectedGame.imageURL}}" alt="{{selectedGame.title}}">
            </div>
-        <div class="example-game-description">
+        <div class="game-description">
           {{game.description}}
-        <br>
-          <button mat-flat-button color="primary" type="button" *ngIf="selectedGame" (click)="openDialog()">
+        </div>
+          <button class="addButton" mat-flat-button color="primary" type="button" *ngIf="selectedGame" (click)="openDialog()">
             Add
         </button>
         <!-- (click)="(addToUser(selectedGame)) -->
 
-        </div>
+        
       </div>
     </td>
   </ng-container>
