@@ -4,7 +4,7 @@
 </button>
 
 <h5 *ngIf="loading">
-  Loading Content
+  <mat-spinner></mat-spinner>
 </h5>
 <table mat-table
        [dataSource]="games" multiTemplateDataRows
@@ -18,7 +18,7 @@
       <td mat-cell *matCellDef="let game"> {{game[column]}} </td>
       </div>
       <div *ngIf="column==='releaseDate'">
-        <td mat-cell *matCellDef="let game"> {{game[column] | date:'MMMM d, y'}} </td>
+        <td mat-cell *matCellDef="let game"> {{game["releaseDate"] | date:'MMMM d, y'}} </td>
         </div>
     </ng-container>
 

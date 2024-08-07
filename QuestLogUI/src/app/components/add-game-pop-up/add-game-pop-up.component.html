@@ -3,8 +3,19 @@
     <input matInput [matDatepicker]="start">
     <mat-datepicker-toggle matIconSuffix [for]="start"></mat-datepicker-toggle>
     <mat-datepicker #start></mat-datepicker>
-    <mat-label>Finished Playing</mat-label>
-    <input matInput [matDatepicker]="end">
-    <mat-datepicker-toggle matIconSuffix [for]="end"></mat-datepicker-toggle>
-    <mat-datepicker #end></mat-datepicker>
   </mat-form-field>
+
+  <mat-form-field>
+  <mat-label>Finished Playing</mat-label>
+  <input matInput [matDatepicker]="end">
+  <mat-datepicker-toggle matIconSuffix [for]="end"></mat-datepicker-toggle>
+  <mat-datepicker #end></mat-datepicker> 
+ </mat-form-field>
+<br>
+
+<button mat-flat-button color="primary" type="button" (click)="closeWithoutSave()">
+  Cancel
+</button>
+<button mat-flat-button color="primary" type="button" (click)="submit()">
+  Add
+</button>
