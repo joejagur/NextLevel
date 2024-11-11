@@ -1,13 +1,15 @@
 package questlog.db.db.Model;
 
+import java.util.Date;
+
 public class UserGame {
     private int id;
-    private String name;
-    private String description;
+    private int gameID;
+    private int userID;
     private int rating;
-    private String imageURL;
-    private String dev;
-    private String publisher;
+    private String comments;
+    private Date firstPlayed;
+    private Date lastPlayed;
     public UserGame(int id, String name, String description, String dev, String publisher, String imageURL, int rating){
         this.id = id;
         this.name = name;
