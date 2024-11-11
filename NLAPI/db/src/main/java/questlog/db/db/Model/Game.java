@@ -81,7 +81,4 @@ public class Game {
         this.publisher = newPub;
     }
 
-    public UserGame toUserGame(){
-        return new UserGame(id, name, description, dev, publisher, imageURL, 0);
-    }
 }
