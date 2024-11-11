@@ -1,0 +1,102 @@
+html, body {
+  max-width: 100%;
+  overflow-y: hidden;
+}
+
+table {
+  max-width: 100%;
+}
+
+tr.example-detail-row {
+   height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+  
+
+}
+
+.game-image {
+  display: inline-block;
+  border: 2px solid black;
+  margin: 12px;
+}
+.game-image img {
+  display: block;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.game-description {
+  margin: 12px;
+  float:none;
+}
+
+
+.table {
+  max-width: 90%;
+}
+
+#thumbnail_image {
+  object-fit: scale-down;
+  float: left;
+  border: 2px solid black;
+}
+
+
+mat-table {
+  width: 100%;
+}
+
+mat-row.hidden-detail {
+  height: 0;
+  min-height: initial; 
+}
+
+mat-row.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+mat-row.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row, /* override mat-row styling */
+.example-element-row mat-cell {
+  border-bottom-width: 0;
+}
+
+.header {
+  text-transform: capitalize;
+}
+
+* {
+  margin: 0px 12px;
+}
+input, .primary{
+  margin:6px 12px ;
+}
+
+
+.addButton {
+  margin: 12px;
+  
+}
