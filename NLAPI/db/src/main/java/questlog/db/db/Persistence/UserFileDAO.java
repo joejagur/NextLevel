@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import questlog.db.db.Model.Game;
 import questlog.db.db.Model.User;
+import questlog.db.db.Model.UserGame;
 
 public class UserFileDAO implements UserDAO{
 
@@ -37,12 +37,14 @@ public class UserFileDAO implements UserDAO{
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
                 User returnUser = new User(rs.getInt("id"), rs.getString("username"), rs.getString("password"));
-                statement = conn.prepareStatement("SELECT game.* FROM users_game_list INNER JOIN game on users_game_list.gameID = game.id WHERE userID=(?)");
+                statement = conn.prepareStatement("SELECT * FROM users_game_list INNER JOIN game on users_game_list.gameID = game.id WHERE userID=(?)");
             
                 statement.setInt(1, returnUser.getID());
                 ResultSet rs2 = statement.executeQuery();
                 while(rs2.next()){
-                    returnUser.addGame(new Game(rs2.getInt(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), "", rs.getDate("releaseDate")));
+                    returnUser.addGame( new UserGame(0, 0, 0, userName, null, null, 0)
+                        //new Game(rs2.getInt(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), "", rs.getDate("releaseDate"))
+                        );
                 }
                 return returnUser;
             }
@@ -65,7 +67,10 @@ public class UserFileDAO implements UserDAO{
                 statement.setInt(1, returnUser.getID());
                 ResultSet rs2 = statement.executeQuery();
                 while(rs2.next()){
-                    returnUser.addGame(new Game(rs2.getInt(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), "", rs.getDate("releaseDate")));
+                    //returnUser.addGame(new Game(rs2.getInt(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), "", rs.getDate("releaseDate")));
+                    returnUser.addGame( new UserGame(0, 0, 0, "hi", null, null, 0)
+                    //new Game(rs2.getInt(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), "", rs.getDate("releaseDate"))
+                    );
                 }
                 
                 return returnUser;

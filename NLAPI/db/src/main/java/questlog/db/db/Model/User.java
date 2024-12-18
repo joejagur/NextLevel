@@ -49,8 +49,8 @@ public class User {
         this.gameLog= gameLog;
     }
 
-    public void addGame(Game game){
-        this.gameLog.add(game.toUserGame());
+    public void addGame(UserGame game){
+        this.gameLog.add(game);
     }
 
 

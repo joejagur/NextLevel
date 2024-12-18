@@ -6,6 +6,12 @@
       "type": "java",
       "name": "DbApplication",
       "request": "launch",
+      "mainClass": "questlog.db.db.DbApplication"
+    },
+    {
+      "type": "java",
+      "name": "DbApplication",
+      "request": "launch",
       "mainClass": "questlog.db.db.DbApplication",
       "projectName": "db"
     },
